@@ -1,0 +1,4 @@
+enum TabPages {
+  home,
+  settings,
+}
