@@ -2,11 +2,11 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:ui';
 
+import 'package:architecture_template/product/init/config/app_environment.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../product/constants/service_constants.dart';
 import '../../product/services/shared_preferences_service.dart';
 import '../enum/request_type_enum.dart';
 import '../utils/get_locale.dart';
@@ -23,7 +23,7 @@ abstract class IApiClient {
 
 @LazySingleton(as: IApiClient)
 class ApiClient implements IApiClient {
-  final String baseUrl = ServiceConstants.apiUrl;
+  final String baseUrl = AppEnvItems.baseUrl.value;
 
   late Map<String, String> _baseHeaders;
   final ISharedPreferencesService _sharedPreferencesService;

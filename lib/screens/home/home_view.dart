@@ -1,3 +1,4 @@
+import 'package:architecture_template/product/init/config/app_environment.dart';
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

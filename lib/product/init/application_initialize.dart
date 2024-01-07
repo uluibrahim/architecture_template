@@ -4,6 +4,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../core/utils/network_status_manager/network_status_manager.dart';
 import '../../inject/dependency_injection.dart';
+import 'config/app_environment.dart';
 
 @immutable
 final class ApplicationInitialize {
@@ -12,10 +13,11 @@ final class ApplicationInitialize {
     await initializeGetIt(Environment.prod);
     await getIt.get<INetworkStatusManager>().init();
     await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-
-    FlutterError.onError = (details){
-      // crashlytics 
-    };
     
+    AppEnvironment.setup();
+
+    FlutterError.onError = (details) {
+      // crashlytics
+    };
   }
 }

@@ -13,8 +13,10 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # CORE
   cupertino_icons: ^1.0.2
   equatable: ^2.0.5
+  envied: ^0.5.3
 
   # STATE MANAGEMANT
   provider: ^6.0.5
@@ -50,6 +52,7 @@ dev_dependencies:
   injectable_generator: ^2.1.6
   flutter_lints: ^2.0.0
   auto_route_generator: ^7.3.1
+  envied_generator: ^0.5.3
 
 flutter:
   uses-material-design: true

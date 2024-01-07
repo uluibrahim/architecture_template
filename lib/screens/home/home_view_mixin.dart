@@ -49,8 +49,8 @@ mixin HomeViewMixin on ScreenState<MyHomeScreen, HomeViewModel, HomeData> {
     );
   }
 
-  Text get descripton => const Text(
-        'You have pushed the button this many times:',
+  Text get descripton =>  Text(
+        'You have pushed the button this many times: \n ${AppEnvItems.baseUrl.value}',
       );
 
   AppBar get appbar => AppBar(
