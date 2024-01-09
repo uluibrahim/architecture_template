@@ -97,7 +97,7 @@ class ApiClient implements IApiClient {
       case RequestType.delete:
         return http.delete(Uri.parse(baseUrl + path),
             body: jsonEncode(body), headers: {..._baseHeaders, ...?headers});
-      default:
+      case RequestType.get:
         return http.get(Uri.parse(baseUrl + path),
             headers: {..._baseHeaders, ...?headers});
     }
