@@ -8,7 +8,9 @@ import 'package:http/http.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../product/services/shared_preferences_service.dart';
+import '../enum/api_header_value.dart';
 import '../enum/request_type_enum.dart';
+import '../utils/exceptions.dart';
 import '../utils/get_locale.dart';
 
 abstract class IApiClient {
@@ -30,7 +32,7 @@ class ApiClient implements IApiClient {
 
   ApiClient(this._sharedPreferencesService) {
     _baseHeaders = {
-      HttpHeaders.contentTypeHeader: 'application/json',
+      HttpHeaders.contentTypeHeader: ApiHeaderValue.applicationJson.value,
     };
   }
 
@@ -44,10 +46,10 @@ class ApiClient implements IApiClient {
   }) async {
     final String languageCode = _getLang;
 
-    final langHeader = {'Accept-Language': languageCode};
+    final langHeader = {HttpHeaders.acceptLanguageHeader: languageCode};
     headers = {...?headers, ...langHeader};
 
-    if (useAuthorizationHeader) await _addAuthorizationHeader();
+    if (useAuthorizationHeader) _addAuthorizationHeader();
 
     final Response response =
         await _sendRequest(requestType, path, body, headers);
@@ -71,11 +73,11 @@ class ApiClient implements IApiClient {
     return acceptLanguage;
   }
 
-  Future<void> _addAuthorizationHeader() async {
-    final token = await _sharedPreferencesService.getToken();
+  void _addAuthorizationHeader() async {
+    final token = _sharedPreferencesService.getToken();
     _baseHeaders = {
       ..._baseHeaders,
-      HttpHeaders.authorizationHeader: 'Bearer $token',
+      HttpHeaders.authorizationHeader: ApiHeaderValue.bearerToken(token),
     };
   }
 
@@ -107,7 +109,7 @@ class ApiClient implements IApiClient {
       {Map<String, String>? headers, Object? body}) async {
     switch (response.statusCode) {
       case HttpStatus.unauthorized:
-        throw Exception("Unauthorized");
+        throw AuthException();
 
       case HttpStatus.temporaryRedirect:
         Response redirect = await http.post(

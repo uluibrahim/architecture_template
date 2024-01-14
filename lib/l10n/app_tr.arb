@@ -1,5 +1,6 @@
 {
   "title": "Başlık",
   "homePage": "Ana Sayfa",
-  "settings": "Ayarlar"
+  "settings": "Ayarlar",
+  "defaultErrorMessage": "Bir Hata Oluştu!"
 }

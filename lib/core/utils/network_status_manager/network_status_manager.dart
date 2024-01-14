@@ -1,3 +1,4 @@
+import 'package:architecture_template/core/utils/exceptions.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:injectable/injectable.dart';
 
@@ -40,6 +41,6 @@ class NetworkStatusManager extends INetworkStatusManager {
     bool isConnected =
         NetworkResult.checkConnectivityResult(result).isConnected;
 
-    isConnected ? null : throw Exception();
+    isConnected ? null : throw NetworkException();
   }
 }

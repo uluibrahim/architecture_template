@@ -6,7 +6,7 @@ import '../enums/shared_preferences_enum.dart';
 
 abstract class ISharedPreferencesService {
   Future<bool> setToken(String token);
-  Future<String> getToken();
+  String getToken();
 
   bool getRememberMeValue();
   Future<bool> setRememberMeValue(bool value);
@@ -36,7 +36,7 @@ class SharedPreferencesService implements ISharedPreferencesService {
   SharedPreferencesService(this._prefs);
 
   @override
-  Future<String> getToken() async =>
+  String getToken() =>
       _prefs.getString(PreferenceKeys.token.name).toString().decryptAes();
 
   @override

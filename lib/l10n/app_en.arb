@@ -1,5 +1,6 @@
 {
   "title": "Title",
   "homePage": "Home Page",
-  "settings": "Settings"
+  "settings": "Settings",
+  "defaultErrorMessage": "Something Went Wrong!"
 }
