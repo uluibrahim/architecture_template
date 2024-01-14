@@ -14,8 +14,7 @@ final class ApiResponseHelper {
   }
 
   /// Check response isSuccess and description
-  /// If isSuccess false and description not null, will throw Custom exeption with description
-  /// Description means error message
+  /// If isError true, will throw Custom exeption with error message
   static void checkResponse(ApiResponse response) {
     if (response.isError) {
       throw CustomException(response.errorMessage);
