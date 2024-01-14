@@ -13,18 +13,22 @@ import 'package:architecture_template/core/utils/network_status_manager/network_
     as _i5;
 import 'package:architecture_template/core/view_model/view_model_factory.dart'
     as _i9;
-import 'package:architecture_template/inject/dependency_injection.dart' as _i14;
+import 'package:architecture_template/inject/dependency_injection.dart' as _i16;
 import 'package:architecture_template/product/providers/app_provider.dart'
     as _i12;
 import 'package:architecture_template/product/providers/user_provider.dart'
     as _i6;
+import 'package:architecture_template/product/repositories/auth_repository.dart'
+    as _i15;
+import 'package:architecture_template/product/services/auth_service.dart'
+    as _i13;
 import 'package:architecture_template/product/services/shared_preferences_service.dart'
     as _i10;
 import 'package:architecture_template/screens/bottom_navigation/bottom_navigation_view_model.dart'
     as _i3;
 import 'package:architecture_template/screens/home/home_view_model.dart' as _i4;
 import 'package:architecture_template/screens/settings/settings_view_model.dart'
-    as _i13;
+    as _i14;
 import 'package:architecture_template/screens/template/template_view_model.dart'
     as _i8;
 import 'package:get_it/get_it.dart' as _i1;
@@ -61,10 +65,14 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i11.ApiClient(gh<_i10.ISharedPreferencesService>()));
     gh.singleton<_i12.IAppProvider>(
         _i12.AppProvider(gh<_i10.ISharedPreferencesService>()));
-    gh.factory<_i13.SettingsViewModel>(
-        () => _i13.SettingsViewModel(gh<_i12.IAppProvider>()));
+    gh.lazySingleton<_i13.IAuthService>(
+        () => _i13.AuthService(gh<_i11.IApiClient>()));
+    gh.factory<_i14.SettingsViewModel>(
+        () => _i14.SettingsViewModel(gh<_i12.IAppProvider>()));
+    gh.lazySingleton<_i15.IAuthRepository>(
+        () => _i15.AuthRepository(gh<_i13.IAuthService>()));
     return this;
   }
 }
 
-class _$RegisterModule extends _i14.RegisterModule {}
+class _$RegisterModule extends _i16.RegisterModule {}
