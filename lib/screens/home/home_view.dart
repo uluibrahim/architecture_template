@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/enum/app_state_enum.dart';
-import '../../core/extensions/context_ext.dart';
+import '../../core/extensions/context_extensions.dart';
 import '../../core/screen/screen.dart';
 import 'home_data.dart';
 import 'home_view_model.dart';

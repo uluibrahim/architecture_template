@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/components/mixin/empty_box.dart';
-import '../../core/extensions/context_ext.dart';
+import '../../core/extensions/context_extensions.dart';
 import '../../core/screen/screen.dart';
 import '../../product/models/app_model.dart';
 import '../../product/providers/app_provider.dart';

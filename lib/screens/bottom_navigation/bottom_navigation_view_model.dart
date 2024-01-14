@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../core/enum/app_state_enum.dart';
-import '../../core/extensions/context_ext.dart';
+import '../../core/extensions/context_extensions.dart';
 import '../../core/view_model/view_model.dart';
 import '../../product/enums/tab_enums.dart';
 import '../../product/models/tab_model.dart';
