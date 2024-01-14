@@ -1,9 +1,17 @@
-import 'package:architecture_template/product/init/application_initialize.dart';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'app.dart';
+import 'core/utils/error_handler.dart';
+import 'product/init/application_initialize.dart';
 
 Future<void> main() async {
-  await ApplicationInitialize.initialize();
-  runApp(App());
+  runZonedGuarded(
+    () async {
+      await ApplicationInitialize.initialize();
+      runApp(App());
+    },
+    ErrorHandler.onError,
+  );
 }
