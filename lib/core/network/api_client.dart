@@ -2,16 +2,17 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:ui';
 
-import 'package:architecture_template/product/init/config/app_environment.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../product/init/config/app_environment.dart';
 import '../../product/services/shared_preferences_service.dart';
-import '../enum/api_header_value.dart';
 import '../enum/request_type_enum.dart';
 import '../utils/exceptions.dart';
 import '../utils/get_locale.dart';
+
+part '../enum/api_header_value.dart';
 
 abstract class IApiClient {
   Future<Response> fetch({
@@ -32,7 +33,7 @@ class ApiClient implements IApiClient {
 
   ApiClient(this._sharedPreferencesService) {
     _baseHeaders = {
-      HttpHeaders.contentTypeHeader: ApiHeaderValue.applicationJson.value,
+      HttpHeaders.contentTypeHeader: _ApiHeaderValue._applicationJson.value,
     };
   }
 
@@ -77,7 +78,7 @@ class ApiClient implements IApiClient {
     final token = _sharedPreferencesService.getToken();
     _baseHeaders = {
       ..._baseHeaders,
-      HttpHeaders.authorizationHeader: ApiHeaderValue.bearerToken(token),
+      HttpHeaders.authorizationHeader: _ApiHeaderValue._bearer.value + token,
     };
   }
 
